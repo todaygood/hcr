@@ -1,0 +1,43 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: hcr-namespace
+  name: hcr
+spec:
+  selector:
+    app: hcr
+  ports:
+    - protocol: TCP
+      port: 4001
+      targetPort: 4001
+
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: hcr-namespace
+  name: hcr
+  labels:
+    app: hcr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hcr
+  template:
+    metadata:
+      labels:
+        app: hcr 
+  containers:
+    - name: hcr
+      image: my-image
+      envFrom:
+        - configMapRef:
+            name: hcr-config
+      imagePullPolicy: IfNotPresent
+
+
+
+

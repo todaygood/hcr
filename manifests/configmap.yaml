@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hcr-config
+  namespace: hcr-namespace
+data:
+  HARBORURL: "https://"
+  HARBOR_ADMIN: admin
+  HARBOR_PASSWORD: Harbor12345
+
+# refer: https://golang.0voice.com/?id=176
+# refer: https://www.cnblogs.com/larrydpk/p/14947993.html
+
+
